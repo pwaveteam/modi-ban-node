@@ -1,5 +1,5 @@
 import { OpenAIApi, Configuration } from "openai";
-
+""
 const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
