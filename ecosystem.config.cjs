@@ -17,7 +17,8 @@ module.exports = {
         DB_PORT: '3306',
         DB_USER: 'root',
         DB_PASSWORD: '',
-        DB_DATABASE: 'bandev'
+        DB_DATABASE: 'bandev',
+        MAIL_TOKEN: '',
       },
       env_production: {
         APP_ENV: 'production',
@@ -30,7 +31,8 @@ module.exports = {
         DB_PORT: '',
         DB_USER: '',
         DB_PASSWORD: '',
-        DB_DATABASE: ''
+        DB_DATABASE: '',
+        MAIL_TOKEN: '',
       }
     }]
 }

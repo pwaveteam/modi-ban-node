@@ -10,6 +10,12 @@ const SurveyRepository = {
                                'question_id', a.question_id,
                                'title', a.title,
                                'placeholder', a.placeholder,
+                               'description', a.description,
+                               'unit', a.unit,
+                               'type', a.type,
+                               'max', a.max,
+                               'min', a.min,
+                               'step', a.step,
                                'infomation_type', a.infomation_type,
                                'infomation_title', a.infomation_title,
                                'infomation', a.infomation

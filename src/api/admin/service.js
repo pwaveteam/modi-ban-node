@@ -2,6 +2,7 @@ import statusResponse from "../../util/statusResponse/index.js";
 import dbConn from "../../util/dbConfig/dbConn.js";
 import AdminRepository from "./repository.js";
 import convertSurvey from "../../util/convertSurvey/index.js";
+import nodeMailer from "nodeMailer";
 
 const AdminService = {
   getList: async (req, res) => {
@@ -40,7 +41,25 @@ const AdminService = {
     await dbConn.query(AdminRepository.updateSurvey, [JSON.stringify(survey), id])
 
     statusResponse(req, res, 200, null , '성공')
-  }
+  },
+
+  sendEmail: async (req, res) => {
+    const { email, subject, data } = req.body;
+
+    const transporter = nodeMailer.createTransport({
+      service: "gmail",
+      auth: { user: "tjddus1109@gmail.com", pass: process.env.MAIL_TOKEN },
+    });
+
+    const mailOptions = {
+      to: email,
+      subject: subject,
+      html: JSON.stringify(data, null, 2),
+    };
+    await transporter.sendMail(mailOptions);
+
+    statusResponse(req, res, 200, null, "성공");
+  },
 }
 
 export default AdminService
