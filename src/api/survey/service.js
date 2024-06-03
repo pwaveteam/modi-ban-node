@@ -22,13 +22,22 @@ const SurveyService = {
     const q1 = (await dbConn.query(SurveyRepository.get, [seq]))[0]
 
     question.row.push(q1)
-    question.next = q1?.next_id || 0
+    
+    if (-1 === q1?.next_question_id) {
+      question.next = 0
+    } else {
+      question.next = q1?.next_question_id || q1?.next_id || 0
+    }
     question.prev = q1?.previous_id || -1
 
     if (question.row[0]?.together) {
       const q2 = (await dbConn.query(SurveyRepository.get, [question.row[0].together]))[0]
       question.row.push(q2)
-      question.next = q2?.next_id || 0
+      if (-1 === q2?.next_question_id) {
+        question.next = 0
+      } else {
+        question.next = q2?.next_question_id || q2?.next_id || 0
+      }
     }
 
     res.json(question)
