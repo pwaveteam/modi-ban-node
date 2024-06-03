@@ -52,6 +52,7 @@ const AdminService = {
     });
 
     const mailOptions = {
+      from: 'Banseokdispenser@gmail.com',
       to: email,
       subject: subject,
       html: JSON.stringify(data, null, 2),
